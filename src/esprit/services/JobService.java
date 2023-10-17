@@ -11,6 +11,7 @@ package esprit.services;
  * @author Lenovo
  */
 
+import esprit.enities.Category;
 import esprit.enities.Job;
 import esprit.tools.DataSource;
 import java.sql.*;
@@ -28,12 +29,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class JobService {
 
  Connection cnx=DataSource.getInstance().getConnection();
-   
+   ObservableList<Category>obListCat = FXCollections.observableArrayList();
+ObservableList<Job>obList = FXCollections.observableArrayList();
+
         
   public void ajouterJob(Job J) {
         String req = "INSERT INTO `job`(`type`, `metierOuproduit`, `description`, `photos`,`IdCategorie`) VALUES (?,?,?,?,?)";
@@ -116,8 +121,77 @@ public class JobService {
     }
     
     
+   public ObservableList<Job> afficherJob2() {
+        String sql = "SELECT * FROM job";
+        List<Job> listeJob = new ArrayList<>();
+
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String type = result.getString(2);
+                String metierOuProduit = result.getString(3);
+                String description =  result.getString(4);
+                String photos = result.getString(5);
+                String NomCategorie = result.getString(6);
+
+                Job s = new Job(id, type, metierOuProduit, description, photos, NomCategorie);
+                obList.add(s);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return obList;
+    }
+   
+   
+   
+   public boolean getArticle(Job s) {
+        try {
+            PreparedStatement ps;
+            ps = cnx.prepareStatement("SELECT * FROM Job WHERE id = ?");
+            ps.setString(1, s.getDescription());
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                //System.out.println(rs.getString("ServLib"));
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
+   }
+
+    public ObservableList<Job> getJobByCategorie() {
+        String sql ="select * from job S "
+                + "JOIN Category C ON C.NomCategorie=S.NomCategorie";
+        List<Job> listeJob = new ArrayList<>();
+
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int id = result.getInt(1);
+                String type = result.getString(2);
+                String metierOuProduit = result.getString(3);
+                String description = result.getString(4);
+                String photos = result.getString(5);
+                String NomCategorie= result.getString(6);
+
+                Job s = new Job(id, type, metierOuProduit, description, photos, NomCategorie);
+                obList.add(s);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return obList;
+    }
 }
-  
+
     
             
    

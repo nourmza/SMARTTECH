@@ -31,6 +31,7 @@ public class Job {
         return IdCategorie;
     }
 
+    
     public Job(int id, int IdCategorie, String type, String metierOuProduit, String description, String photos) {
         this.id = id;
         this.IdCategorie = IdCategorie;
@@ -68,6 +69,10 @@ public class Job {
         this.photos = photos;
     }
 
+    public void setNomCategorie(String NomCategorie) {
+        this.NomCategorie = NomCategorie;
+    }
+
     @Override
     public String toString() {
         return "Job{" + "id=" + id + ", type=" + type + ", metierOuProduit=" + metierOuProduit + ", description=" + description + ", photos=" + photos + '}';
@@ -85,6 +90,10 @@ public class Job {
     public void setIdCategorie(int IdCategorie) {
         this.IdCategorie = IdCategorie;
     }
+
+    public String getNomCategorie() {
+        return NomCategorie;
+    }
     
     public Job( String type, String metierOuProduit, String description, String photos) {
         
@@ -93,17 +102,45 @@ public class Job {
         this.description = description;
         this.photos = photos;
     }
+
+    public Job(String type, String metierOuProduit, String description, String photos, String NomCategorie) {
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+        this.NomCategorie = NomCategorie;
+    }
+    
     private int id,IdCategorie;
     private String type;
     private String metierOuProduit;
     private String description;
     private String photos;
+    private String NomCategorie;
     //private Category cat;
 
-    public void setID(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Job(int id, String type, String metierOuProduit, String description, String photos, String NomCategorie) {
+        this.id = id;
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+        this.NomCategorie = NomCategorie;
+    }
+    
+
+
+    public Job(int id, int IdCategorie, String type, String metierOuProduit, String description, String photos, String NomCategorie) {
+        this.id = id;
+        this.IdCategorie = IdCategorie;
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+        this.NomCategorie = NomCategorie;
     }
 
+ 
 
 }
 

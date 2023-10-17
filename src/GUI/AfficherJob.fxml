@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="609.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherJobController">
+   <children>
+      <TableView fx:id="tableview" layoutX="14.0" layoutY="136.0" prefHeight="420.0" prefWidth="786.0">
+        <columns>
+          <TableColumn fx:id="ft_type" prefWidth="75.0" text="TYPE" />
+            <TableColumn fx:id="ft_metier" prefWidth="156.0" text="MetierouPorduit" />
+            <TableColumn fx:id="ft_desc" prefWidth="116.0" text="Description" />
+            <TableColumn fx:id="ft_nomcategorie" prefWidth="129.0" text="Nom Categorie" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAjouter" layoutX="593.0" layoutY="60.0" mnemonicParsing="false" onAction="#gotoAjouter" text="Ajouter" />
+   </children>
+</AnchorPane>

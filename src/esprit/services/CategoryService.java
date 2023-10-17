@@ -29,6 +29,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
@@ -39,7 +41,8 @@ public class CategoryService {
     
 Connection cnx=DataSource.getInstance().getConnection();
     
-    
+    ObservableList<Category>obList = FXCollections.observableArrayList();
+
     /**
      *
      * @param C
@@ -118,7 +121,47 @@ Connection cnx=DataSource.getInstance().getConnection();
          
          return categorie ;
     }
+    
+    
+    public ObservableList<Category> afficherCategory2() {
+        String sql = "SELECT * FROM category";
+        List<Category> listeCatg = new ArrayList<>();
 
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+                int IdCategorie = result.getInt(1);
+                String DescriptionCategorie = result.getString(2);
+                String NomCategorie=result.getString(3);
+                Category c = new Category(IdCategorie, DescriptionCategorie,NomCategorie);
+                obList.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return obList;
+    }
+
+    
+    public boolean getCategorie(Category c) {
+        try {
+            PreparedStatement ps;
+            ps = cnx.prepareStatement("SELECT * FROM category WHERE IdCategorie = ?");
+            ps.setString(1, c.getNomCategorie());
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                //System.out.println(rs.getString("CatLib"));
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
 }
 
 
