@@ -13,6 +13,7 @@ public class Category {
 
     public String getDescriptionCategorie;
 
+ 
     @Override
     public int hashCode() {
         int hash = 3;
@@ -20,6 +21,7 @@ public class Category {
         return hash;
     }
 
+  
    
 
     
@@ -27,6 +29,12 @@ public class Category {
    private int IdCategorie;
    private String NomCategorie;
    private String DescriptionCategorie;
+
+     public Category( int IdCategorie,String DescriptionCategorie, String NomCategorie) {
+        this.IdCategorie = IdCategorie;
+        this.NomCategorie = NomCategorie;
+        this.DescriptionCategorie = DescriptionCategorie;
+    }
 
     public Category(String NomCategorie, String DescriptionCategorie) {
         this.NomCategorie = NomCategorie;
