@@ -36,7 +36,7 @@ public class JobService {
    
         
   public void ajouterJob(Job J) {
-        String req = "INSERT INTO `job`(`type`, `metierOuproduit`, `description`, `photos`) VALUES (?,?,?,?)";
+        String req = "INSERT INTO `job`(`type`, `metierOuproduit`, `description`, `photos`,`IdCategorie`) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 
@@ -44,6 +44,8 @@ public class JobService {
             ps.setString(2, J.getMetierOuProduit());
              ps.setString(3, J.getDescription());
               ps.setString(4, J.getPhotos());
+               ps.setInt(5, J.getIdCategorie());
+
             ps.executeUpdate();
             System.out.println("job ajoutée avec succès!");
         } catch (SQLException ex) {
@@ -63,7 +65,7 @@ public class JobService {
    public void modifier(Job J) {
 
         try {
-            String req = "UPDATE `job` SET `type`=?,`metierOuproduit`=?,`description`=?,`photos`=? WHERE id=?";
+            String req = "UPDATE `job` SET `type`=?,`metierOuproduit`=?,`description`=?,`photos`=?  ,`IdCategorie`=?   WHERE id=?";
             PreparedStatement st = cnx.prepareStatement(req);
 
             st.setString(1, J.getType());
@@ -71,6 +73,8 @@ public class JobService {
             st.setString(3, J.getDescription());
             st.setString(4, J.getPhotos());
             st.setInt(5, J.getId());
+            st.setInt(6, J.getIdCategorie());
+
             st.executeUpdate();
             System.out.println("Job Modifié avec succès");
         } catch (SQLException ex) {
@@ -96,7 +100,8 @@ public class JobService {
               
                 
                 E.setId(rs.getInt("Id"));
-                
+                                E.setIdCategorie(rs.getInt("IdCategorie"));
+
                  
                 
                 job.add(E);

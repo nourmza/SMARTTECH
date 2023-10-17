@@ -27,6 +27,19 @@ public class Job {
         return type;
     }
 
+    public int getIdCategorie() {
+        return IdCategorie;
+    }
+
+    public Job(int id, int IdCategorie, String type, String metierOuProduit, String description, String photos) {
+        this.id = id;
+        this.IdCategorie = IdCategorie;
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -60,13 +73,19 @@ public class Job {
         return "Job{" + "id=" + id + ", type=" + type + ", metierOuProduit=" + metierOuProduit + ", description=" + description + ", photos=" + photos + '}';
     }
 
-    public Job(int id, String type, String metierOuProduit, String description, String photos) {
-        this.id = id;
+    public Job(String type, String metierOuProduit, String description, String photos,int IdCategorie) {
+      
         this.type = type;
         this.metierOuProduit = metierOuProduit;
         this.description = description;
         this.photos = photos;
+        this.IdCategorie=IdCategorie;
     }
+
+    public void setIdCategorie(int IdCategorie) {
+        this.IdCategorie = IdCategorie;
+    }
+    
     public Job( String type, String metierOuProduit, String description, String photos) {
         
         this.type = type;
@@ -74,7 +93,7 @@ public class Job {
         this.description = description;
         this.photos = photos;
     }
-    private int id;
+    private int id,IdCategorie;
     private String type;
     private String metierOuProduit;
     private String description;

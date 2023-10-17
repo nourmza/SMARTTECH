@@ -32,7 +32,7 @@ public class JobMain {
        
             
 //***ajouter job
-  Job j =new Job("sport"," ,musculation","nour","mzahi");
+  Job j =new Job("sport"," ,musculation","nour","mzahi",2);
   s.ajouterJob(j);
   
   
@@ -44,6 +44,8 @@ public class JobMain {
      updateC.setMetierOuProduit("musculation ");
      updateC.setDescription("musculation ");
      updateC.setPhotos("musculation ");
+          updateC.setIdCategorie(1);
+
      updateC.setId(1);
      
     s.modifier(updateC);
