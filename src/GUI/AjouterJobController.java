@@ -45,8 +45,6 @@ public class AjouterJobController implements Initializable {
     @FXML
     private Button btnAjouter;
     @FXML
-    private ComboBox<String> cat_cb;
-    @FXML
     private TextField fx_type;
     @FXML
     private TextField fx_metier;
@@ -61,32 +59,20 @@ public class AjouterJobController implements Initializable {
     JobService ss = new JobService();
     @FXML
     private AnchorPane nh;
+    @FXML
+    private ImageView btnReturn;
+    @FXML
+    private TextField catid;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //GET CATREGORIES LISTE DEROULANTE FOR JOIN !
-                        ObservableList<String>list = FXCollections.observableArrayList();
-                        CategoryService sc = new CategoryService();
-                        
-                        
-                      
-                        ObservableList<Category>obList = FXCollections.observableArrayList();
-                        obList =sc.afficherCategory2();
 
-        cat_cb.getItems().clear();
-        
-        for(Category nameCat : obList) {
-            System.out.println("hii");
-            list.add(nameCat.getNomCategorie());
-                        System.out.println(list);
-
-                    cat_cb.setItems(list);
 
         }
-    }    
+      
 
     @FXML
     private void ajoutJobHandle(ActionEvent event) {
@@ -96,30 +82,57 @@ public class AjouterJobController implements Initializable {
         String type = fx_type.getText();
         String metierOuProduit = fx_metier.getText();
           String  description=fx_desc.getText();
-     
+            int IdCategorie= Integer.parseInt(catid.getText());
 
-       if (type.length() == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur! Veuillez entrer type !");
-            alert.show();
-        } else if (metierOuProduit.length() == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur! Veuillez entrer metierOuProduit !");
-            alert.show();
-        } else if (description.length() == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Information Dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Erreur! Veuillez entrer description !");
-            alert.show();
+             
+   
+   
+   if (type.length()==0)
+       
+       
+   {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+   alert.setTitle("information Dialog");
+   alert.setHeaderText(null);
+   
+   alert.setContentText("erreur donner un type");
+   alert.show();
+   
+   } else if 
+            (metierOuProduit.length()==0)
+       
+       
+   {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+   alert.setTitle("information Dialog");
+   alert.setHeaderText(null);
+   
+   alert.setContentText("erreur donner une metierOuProduit");
+   alert.show();
+   }
+   else if 
+            (IdCategorie<0)
+       
+       
+   {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+   alert.setTitle("information Dialog");
+   alert.setHeaderText(null);
+   
+   alert.setContentText("erreur donner un IdCategorie");
+   alert.show();
+   } 
+            else if 
+            (description.length()==0)
+      
+       
+   {Alert alert = new Alert(Alert.AlertType.INFORMATION);
+   alert.setTitle("information Dialog");
+   alert.setHeaderText(null);
+   
+   alert.setContentText("erreur donner un description");
+   alert.show();
+   } 
 
-
-        } else {
-            ss.ajouterJob(new Job(type, metierOuProduit, description, file_path.getText(),cat_cb.getValue()));
+        else {
+            ss.ajouterJob(new Job(type, metierOuProduit, description, file_path.getText(),IdCategorie));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success Message");
             alert.setHeaderText(null);
@@ -128,7 +141,7 @@ public class AjouterJobController implements Initializable {
 
     }
 
- 
+    
         
         
     }
@@ -141,7 +154,7 @@ public class AjouterJobController implements Initializable {
         if (file != null) {
             String path = file.getName();
             file_path.setText(path);
-            Image image = new Image(file.toURI().toString(), 110, 110, false, true);
+            Image image = new Image(file.toURI().toString(), 500, 500, false, true);
             imagev.setImage(image);
         } else {
             System.out.println("NO DATA EXIST!");
@@ -152,13 +165,25 @@ public class AjouterJobController implements Initializable {
     @FXML
     private void ajoutJobHandler(ActionEvent event) {
         try {
-            Parent page1 = FXMLLoader.load(getClass().getResource("AfficherArticle.fxml"));
+            Parent page1 = FXMLLoader.load(getClass().getResource("AfficherJob.fxml"));
             Scene scene = new Scene(page1);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void returnTo(MouseEvent event) {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("crud_job.fxml"));
+        try {
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex);
         }
     }
     

@@ -7,15 +7,21 @@ package GUI;
 
 import esprit.enities.Category;
 import esprit.services.CategoryService;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -30,6 +36,10 @@ public class AjoutercategorieController implements Initializable {
     private TextArea fx_description;
     @FXML
     private Button ajouter;
+    @FXML
+    private ImageView btnReturn;
+    @FXML
+    private AnchorPane nh;
 
     /**
      * Initializes the controller class.
@@ -60,15 +70,16 @@ public class AjoutercategorieController implements Initializable {
    
    alert.setContentText("erreur donner une nom categorie");
    alert.show();
+   
    } else if 
-            (NomCategorie.length()==0)
+            (DescriptionCategorie.length()==0)
        
        
    {Alert alert = new Alert(Alert.AlertType.INFORMATION);
    alert.setTitle("information Dialog");
    alert.setHeaderText(null);
    
-   alert.setContentText("erreur donner une nom categorie");
+   alert.setContentText("erreur donner une DescriptionCategorie");
    alert.show();
    }
    else 
@@ -84,6 +95,19 @@ public class AjoutercategorieController implements Initializable {
            }
    
    }
+
+    @FXML
+    private void returnTo(MouseEvent event) {
+        
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("crud_category.fxml"));
+        try {
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
    
     }
     

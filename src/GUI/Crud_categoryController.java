@@ -18,6 +18,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -31,6 +34,10 @@ public class Crud_categoryController implements Initializable {
     private Button affichercategorie;
     @FXML
     private Button ajoutercategory;
+    @FXML
+    private ImageView btnReturn;
+    @FXML
+    private AnchorPane nh;
 
     /**
      * Initializes the controller class.
@@ -76,5 +83,18 @@ Logger.getLogger(Location_categoryController.class.getName()).log(Level.SEVERE,n
 
     }
 }
+
+    @FXML
+    private void returnTo(MouseEvent event) {
+        
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("location_category.fxml"));
+        try {
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
     
 }

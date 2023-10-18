@@ -3,10 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/enities/Job.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/services/CategoryService.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/categoryapplication/CategoryMain.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/Crud_categoryController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/crud_category.fxml</file>
             <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/enities/Category.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/Affichercategorie.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AjoutercategorieController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/services/CategoryService.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/location_category.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/Modifierjob.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AjouterJobController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/enities/Job.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/Interface/IJob.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/categoryapplication/CategoryMain.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AfficherJobController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AjouterJob.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/ajoutercategorie.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AfficherJob.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/crud_job.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/Modifiercategorie.fxml</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/ModifierjobController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/Interface/ICategorie.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AffichercategorieController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/ModifiercategorieController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/services/JobService.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/categoryapplication/JobMain.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/Location_categoryController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/Crud_jobController.java</file>
         </group>
     </open-files>
 </project-private>

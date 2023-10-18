@@ -30,7 +30,11 @@ r1.ajouterCategory(C);
 //Afficher category
 CategoryService es = new CategoryService();
 
- System.out.println(es.afficher());
+ //System.out.println(es.afficher());
+ 
+ 
+  //System.out.println(es.afficherCategory2());
+ // es.getCategorie(C);
 }
 }
 

@@ -18,5 +18,6 @@ public interface ICategorie {
     public void modifierCategorie (Category C);
     public void supprimerCategorie(int IdCategorie);
     public List<Category>afficherCategorie();
+    public List<Category>afficherCategory2();
     public Category getCategorie (int idCategorie) throws SQLException;
 }

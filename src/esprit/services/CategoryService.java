@@ -152,7 +152,7 @@ Connection cnx=DataSource.getInstance().getConnection();
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                //System.out.println(rs.getString("CatLib"));
+                System.out.println(rs.getString("CatLib"));
                 return true;
             } else {
                 return false;

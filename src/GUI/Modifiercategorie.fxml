@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="GUI.ModifiercategorieController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifiercategorieController">
    <children>
       <TextField fx:id="fx_nom" layoutX="197.0" layoutY="91.0" prefHeight="31.0" prefWidth="200.0" />
       <TextArea fx:id="fx_description" layoutX="197.0" layoutY="131.0" prefHeight="200.0" prefWidth="200.0" />
@@ -20,5 +21,10 @@
          </font>
       </Label>
       <Button fx:id="modifier" layoutX="466.0" layoutY="331.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <ImageView fx:id="btnReturn" fitHeight="43.0" fitWidth="46.0" layoutX="16.0" layoutY="20.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/return.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

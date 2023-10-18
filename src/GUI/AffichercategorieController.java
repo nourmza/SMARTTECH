@@ -22,6 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -43,6 +46,10 @@ public class AffichercategorieController implements Initializable {
     private Button supprimer;
     @FXML
     private Button mod;
+    @FXML
+    private AnchorPane nh;
+    @FXML
+    private ImageView btnReturn;
     
   
     
@@ -60,11 +67,11 @@ ListView<Category> list1= affichercategorie;
             Category C = list2.get(i);
             list1.getItems().add(C);
 
-        }    }    
+        }   }     
 
     @FXML
     private void supprimercategorie(ActionEvent event) {
-    ListView<Category> list1 = affichercategorie;
+   ListView<Category> list1 = affichercategorie;
         CategoryService inter = new CategoryService();
         int selectedIndex = list1.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
@@ -103,6 +110,19 @@ ListView<Category> list1= affichercategorie;
         } catch (IOException ex) {
             Logger.getLogger(Location_categoryController.class.getName()).log(Level.SEVERE, null, ex);
 
+        }
+    }
+
+    @FXML
+    private void returnTo(MouseEvent event) {
+        
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("crud_category.fxml"));
+        try {
+            Parent root = loader.load();
+            nh.getChildren().setAll(root);
+
+        } catch (IOException ex) {
+            System.out.println(ex);
         }
     }
     }

@@ -14,6 +14,7 @@ public class Job {
     public Job() {
         
     }
+    
 
     public int getId() {
         return id;
@@ -27,14 +28,44 @@ public class Job {
         return type;
     }
 
+    public Job(String type, String metierOuProduit, String description, String photos, int id,int IdCategorie) {
+        this.id = id;
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+        this.IdCategorie = IdCategorie;
+    }
+
     public int getIdCategorie() {
         return IdCategorie;
     }
 
-    
-    public Job(int id, int IdCategorie, String type, String metierOuProduit, String description, String photos) {
-        this.id = id;
+    public void setIdCategorie(int IdCategorie) {
         this.IdCategorie = IdCategorie;
+    }
+
+    public Job(String type, String metierOuProduit, String description, String photos, int IdCategorie) {
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+        this.IdCategorie = IdCategorie;
+    }
+
+    public Job(int id, String type, String metierOuProduit, String description, String photos, int IdCategorie) {
+        this.id = id;
+        this.type = type;
+        this.metierOuProduit = metierOuProduit;
+        this.description = description;
+        this.photos = photos;
+        this.IdCategorie = IdCategorie;
+    }
+
+   
+    
+    public Job(int id, String type, String metierOuProduit, String description, String photos) {
+        this.id = id;
         this.type = type;
         this.metierOuProduit = metierOuProduit;
         this.description = description;
@@ -69,33 +100,9 @@ public class Job {
         this.photos = photos;
     }
 
-    public void setNomCategorie(String NomCategorie) {
-        this.NomCategorie = NomCategorie;
-    }
+  
 
-    @Override
-    public String toString() {
-        return "Job{" + "id=" + id + ", type=" + type + ", metierOuProduit=" + metierOuProduit + ", description=" + description + ", photos=" + photos + '}';
-    }
-
-    public Job(String type, String metierOuProduit, String description, String photos,int IdCategorie) {
-      
-        this.type = type;
-        this.metierOuProduit = metierOuProduit;
-        this.description = description;
-        this.photos = photos;
-        this.IdCategorie=IdCategorie;
-    }
-
-    public void setIdCategorie(int IdCategorie) {
-        this.IdCategorie = IdCategorie;
-    }
-
-    public String getNomCategorie() {
-        return NomCategorie;
-    }
-    
-    public Job( String type, String metierOuProduit, String description, String photos) {
+    public Job(String type, String metierOuProduit, String description, String photos) {
         
         this.type = type;
         this.metierOuProduit = metierOuProduit;
@@ -103,42 +110,21 @@ public class Job {
         this.photos = photos;
     }
 
-    public Job(String type, String metierOuProduit, String description, String photos, String NomCategorie) {
-        this.type = type;
-        this.metierOuProduit = metierOuProduit;
-        this.description = description;
-        this.photos = photos;
-        this.NomCategorie = NomCategorie;
-    }
+
     
-    private int id,IdCategorie;
+    private int id;
     private String type;
     private String metierOuProduit;
     private String description;
     private String photos;
-    private String NomCategorie;
-    //private Category cat;
+    private int IdCategorie;
 
-    public Job(int id, String type, String metierOuProduit, String description, String photos, String NomCategorie) {
-        this.id = id;
-        this.type = type;
-        this.metierOuProduit = metierOuProduit;
-        this.description = description;
-        this.photos = photos;
-        this.NomCategorie = NomCategorie;
+    @Override
+    public String toString() {
+        return "Job{" + "id=" + id + ", type=" + type + ", metierOuProduit=" + metierOuProduit + ", description=" + description + ", photos=" + photos + ", IdCategorie=" + IdCategorie + '}';
     }
-    
 
 
-    public Job(int id, int IdCategorie, String type, String metierOuProduit, String description, String photos, String NomCategorie) {
-        this.id = id;
-        this.IdCategorie = IdCategorie;
-        this.type = type;
-        this.metierOuProduit = metierOuProduit;
-        this.description = description;
-        this.photos = photos;
-        this.NomCategorie = NomCategorie;
-    }
 
  
 
