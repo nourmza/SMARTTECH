@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Location_categoryController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Location_categoryController">
    <children>
-      <Button fx:id="location_job" layoutX="102.0" layoutY="106.0" mnemonicParsing="false" onAction="#location_job" prefHeight="31.0" prefWidth="360.0" text="Job" />
-      <Button fx:id="location_category" layoutX="95.0" layoutY="169.0" mnemonicParsing="false" onAction="#location_category" prefHeight="31.0" prefWidth="375.0" text="Category" />
+      <Button fx:id="location_job" layoutX="127.0" layoutY="163.0" mnemonicParsing="false" onAction="#location_job" prefHeight="31.0" prefWidth="324.0" style="-fx-background-color: #ffab40;" text="Job" />
+      <Button fx:id="location_category" layoutX="130.0" layoutY="228.0" mnemonicParsing="false" onAction="#location_category" prefHeight="31.0" prefWidth="324.0" style="-fx-background-color: #ffab40;" text="Category" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="427.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

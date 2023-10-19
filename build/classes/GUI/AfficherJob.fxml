@@ -6,14 +6,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="581.0" prefWidth="846.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherJobController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="581.0" prefWidth="846.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherJobController">
    <children>
-      <ListView fx:id="afficherjob" layoutX="91.0" layoutY="63.0" prefHeight="365.0" prefWidth="693.0" />
-      <Button fx:id="supprimer" layoutX="55.0" layoutY="449.0" mnemonicParsing="false" onAction="#supprimer_job" text="supprimer" />
-      <Button fx:id="mod" layoutX="164.0" layoutY="449.0" mnemonicParsing="false" onAction="#mod" text="modifier" />
+      <ListView fx:id="afficherjob" layoutX="24.0" layoutY="63.0" prefHeight="429.0" prefWidth="760.0" />
       <ImageView fx:id="btnReturn" fitHeight="67.0" fitWidth="66.0" layoutX="14.0" layoutY="7.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/resources/return.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="supprimer" layoutX="64.0" layoutY="524.0" mnemonicParsing="false" onAction="#supprimer_job" prefHeight="31.0" prefWidth="136.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="supprimer" />
+      <Button fx:id="mod" layoutX="218.0" layoutY="525.0" mnemonicParsing="false" onAction="#mod" prefHeight="31.0" prefWidth="136.0" style="-fx-background-radius: 10; -fx-background-color: #c1b263;" text="modifier" />
+      <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="232.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/edit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="71.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/trash.png" />
          </image>
       </ImageView>
    </children>

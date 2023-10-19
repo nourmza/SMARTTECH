@@ -30,7 +30,7 @@ public class NewFXMain extends Application {
             root=FXMLLoader.load(getClass().getResource("location_category.fxml"));
              Scene scene = new Scene(root);
         
-        primaryStage.setTitle("Artzii");
+        primaryStage.setTitle("SMARTTECH");
         primaryStage.setScene(scene);
         primaryStage.show();
         } catch (IOException ex) {

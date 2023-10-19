@@ -9,22 +9,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutercategorieController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="576.0" prefWidth="750.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjoutercategorieController">
    <children>
-      <TextField fx:id="fx_nom" layoutX="187.0" layoutY="81.0" prefHeight="31.0" prefWidth="200.0" />
-      <TextArea fx:id="fx_description" layoutX="187.0" layoutY="121.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="38.0" layoutY="75.0" prefHeight="21.0" prefWidth="141.0" text="Nom Categorie" />
+      <TextField fx:id="fx_nom" layoutX="196.0" layoutY="187.0" prefHeight="31.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="fx_description" layoutX="196.0" layoutY="247.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 15;" />
+      <Label layoutX="45.0" layoutY="191.0" prefHeight="21.0" prefWidth="141.0" text="Nom Categorie" />
       <Label layoutX="95.0" layoutY="143.0" />
-      <Label layoutX="23.0" layoutY="133.0" text="Description Categorie" />
-      <Label layoutX="150.0" layoutY="24.0" prefHeight="21.0" prefWidth="239.0" text="Ajouter Categorie" textAlignment="CENTER" textFill="RED">
+      <Label layoutX="33.0" layoutY="259.0" text="Description Categorie" />
+      <Label layoutX="150.0" layoutY="24.0" prefHeight="33.0" prefWidth="384.0" text="Ajouter Categorie" textAlignment="CENTER" textFill="RED">
          <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
+            <Font name="ROGFonts-Regular" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="ajouter" layoutX="456.0" layoutY="321.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-      <ImageView fx:id="btnReturn" fitHeight="43.0" fitWidth="46.0" layoutX="15.0" layoutY="19.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="ajouter" layoutX="413.0" layoutY="446.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="31.0" prefWidth="112.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="Ajouter" />
+      <ImageView fx:id="btnReturn" fitHeight="51.0" fitWidth="64.0" layoutY="21.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/resources/return.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="30.0" layoutX="417.0" layoutY="452.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/addBtn.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="574.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/logo.png" />
          </image>
       </ImageView>
    </children>

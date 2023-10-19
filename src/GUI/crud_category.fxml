@@ -5,10 +5,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Crud_categoryController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Crud_categoryController">
    <children>
-      <Button fx:id="affichercategorie" layoutX="201.0" layoutY="76.0" mnemonicParsing="false" onAction="#affichercategorie" prefHeight="31.0" prefWidth="240.0" text="Afficher" />
-      <Button fx:id="ajoutercategory" layoutX="203.0" layoutY="156.0" mnemonicParsing="false" onAction="#ajoutercategory" prefHeight="31.0" prefWidth="240.0" text="Ajouter" />
+      <Button fx:id="affichercategorie" layoutX="170.0" layoutY="145.0" mnemonicParsing="false" onAction="#affichercategorie" prefHeight="31.0" prefWidth="240.0" style="-fx-background-color: #ffab40;" text="Afficher" />
+      <Button fx:id="ajoutercategory" layoutX="170.0" layoutY="210.0" mnemonicParsing="false" onAction="#ajoutercategory" prefHeight="31.0" prefWidth="240.0" style="-fx-background-color: #ffab40;" text="Ajouter" />
       <ImageView fx:id="btnReturn" fitHeight="43.0" fitWidth="46.0" layoutX="16.0" layoutY="20.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/resources/return.png" />

@@ -5,14 +5,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Crud_jobController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Crud_jobController">
    <children>
       <ImageView fx:id="btnReturn" fitHeight="43.0" fitWidth="46.0" layoutX="26.0" layoutY="30.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/resources/return.png" />
          </image>
       </ImageView>
-      <Button fx:id="afficherjob" layoutX="171.0" layoutY="94.0" mnemonicParsing="false" onAction="#afficherjob" prefHeight="31.0" prefWidth="215.0" text="Afficher" />
-      <Button fx:id="ajouterjob" layoutX="164.0" layoutY="159.0" mnemonicParsing="false" onAction="#ajouterjob" prefHeight="31.0" prefWidth="222.0" text="Ajouter" />
+      <Button fx:id="afficherjob" layoutX="171.0" layoutY="148.0" mnemonicParsing="false" onAction="#afficherjob" prefHeight="31.0" prefWidth="215.0" style="-fx-background-color: #ffab40;" text="Afficher" />
+      <Button fx:id="ajouterjob" layoutX="167.0" layoutY="207.0" mnemonicParsing="false" onAction="#ajouterjob" prefHeight="31.0" prefWidth="222.0" style="-fx-background-color: #ffab40;" text="Ajouter" />
    </children>
 </AnchorPane>

@@ -9,21 +9,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifiercategorieController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifiercategorieController">
    <children>
-      <TextField fx:id="fx_nom" layoutX="197.0" layoutY="91.0" prefHeight="31.0" prefWidth="200.0" />
-      <TextArea fx:id="fx_description" layoutX="197.0" layoutY="131.0" prefHeight="200.0" prefWidth="200.0" />
+      <TextField fx:id="fx_nom" layoutX="197.0" layoutY="91.0" prefHeight="31.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="fx_description" layoutX="197.0" layoutY="131.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 10;" />
       <Label layoutX="48.0" layoutY="85.0" prefHeight="21.0" prefWidth="141.0" text="Nom Categorie" />
       <Label layoutX="33.0" layoutY="143.0" text="Description Categorie" />
-      <Label layoutX="160.0" layoutY="34.0" prefHeight="21.0" prefWidth="239.0" text="Modifier Categorie" textAlignment="CENTER" textFill="RED">
+      <Label layoutX="100.0" layoutY="34.0" prefHeight="33.0" prefWidth="370.0" text="Modifier Categorie" textAlignment="CENTER" textFill="RED">
          <font>
-            <Font name="Arial Rounded MT Bold" size="24.0" />
+            <Font name="ROGFonts-Regular" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="modifier" layoutX="466.0" layoutY="331.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Button fx:id="modifier" layoutX="441.0" layoutY="331.0" mnemonicParsing="false" onAction="#modifier" prefHeight="31.0" prefWidth="129.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="Modifier" />
       <ImageView fx:id="btnReturn" fitHeight="43.0" fitWidth="46.0" layoutX="16.0" layoutY="20.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/resources/return.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="34.0" layoutX="441.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/edit.png" />
          </image>
       </ImageView>
    </children>
