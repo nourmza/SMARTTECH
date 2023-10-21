@@ -32,7 +32,7 @@ public class JobMain {
        
             
 //***ajouter job
-  Job j =new Job("sport"," ,musculation","nour","mzahi",2,30);
+  Job j =new Job(88,"sport"," ,musculation","nour","mzahi","30");
   s.ajouterJob(j);
   
   
@@ -61,7 +61,7 @@ public class JobMain {
       //afficher job
     JobService es = new JobService();
 
- System.out.println(es.afficherjob());
+ System.out.println(es.afficherJobList());
      
       
        

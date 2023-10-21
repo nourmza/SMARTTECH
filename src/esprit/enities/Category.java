@@ -11,7 +11,6 @@ package esprit.enities;
  */
 public class Category {
 
-    public String getDescriptionCategorie;
 
  
     @Override
@@ -30,27 +29,25 @@ public class Category {
    private String NomCategorie;
    private String DescriptionCategorie;
 
-     public Category( int IdCategorie,String DescriptionCategorie, String NomCategorie) {
-        this.IdCategorie = IdCategorie;
-        this.NomCategorie = NomCategorie;
-        this.DescriptionCategorie = DescriptionCategorie;
-    }
-
+  
     public Category(String NomCategorie, String DescriptionCategorie) {
         this.NomCategorie = NomCategorie;
         this.DescriptionCategorie = DescriptionCategorie;
     }
-     public Category(String NomCategorie, String DescriptionCategorie , int IdCategorie) {
-       this.NomCategorie = NomCategorie;
-        this.DescriptionCategorie = DescriptionCategorie;
-        this.IdCategorie = IdCategorie;
-     }
-
+   
 
     @Override
     public String toString() {
         return "Category{" + "IdCategorie=" + IdCategorie + ", NomCategorie=" + NomCategorie + ", DescriptionCategorie=" + DescriptionCategorie + '}';
     }
+
+    public Category(int IdCategorie, String NomCategorie, String DescriptionCategorie) {
+        this.IdCategorie = IdCategorie;
+        this.NomCategorie = NomCategorie;
+        this.DescriptionCategorie = DescriptionCategorie;
+    }
+
+ 
 
     public void setIdCategorie(int IdCategorie) {
         this.IdCategorie = IdCategorie;

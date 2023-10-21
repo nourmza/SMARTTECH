@@ -14,10 +14,10 @@ import java.util.List;
  * @author mznou
  */
 public interface ICategorie {
-    public void ajouterCategorie ( Category C);
-    public void modifierCategorie (Category C);
-    public void supprimerCategorie(int IdCategorie);
-    public List<Category>afficherCategorie();
+    public String ajouterCategory ( Category C);
+    public void modifier (Category C);
+    public void supprimer_category(int IdCategorie);
+    public List<Category>afficher();
     public List<Category>afficherCategory2();
-    public Category getCategorie (int idCategorie) throws SQLException;
+    //public Category getCategorie (int idCategorie) throws SQLException;
 }

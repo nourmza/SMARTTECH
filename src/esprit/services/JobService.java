@@ -11,6 +11,7 @@ package esprit.services;
  * @author Lenovo
  */
 
+import Interface.IJob;
 import esprit.enities.Job;
 import esprit.tools.DataSource;
 import java.sql.*;
@@ -32,15 +33,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class JobService {
+public class JobService implements IJob {
 
  Connection cnx=DataSource.getInstance().getConnection();
-   ObservableList<Job>obListCat = FXCollections.observableArrayList();
 ObservableList<Job>obList = FXCollections.observableArrayList();
+ObservableList<Job>obListCat = FXCollections.observableArrayList();
+
 
         
   public void ajouterJob(Job J) {
-        String req = "INSERT INTO `job`(`type`, `metierOuproduit`, `description`, `photos`,`IdCategorie`) VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO `job`(`type`, `metierOuproduit`, `description`, `photos`,`NomCategorie`) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
 
@@ -48,7 +50,7 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
             ps.setString(2, J.getMetierOuProduit());
              ps.setString(3, J.getDescription());
               ps.setString(4, J.getPhotos());
-               ps.setInt(5, J.getIdCategorie());
+               ps.setString(5, J.getNomCategorie());
 
             ps.executeUpdate();
             System.out.println("job ajoutée avec succès!");
@@ -81,14 +83,14 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
      }
    public void modifier(Job J) {
     try {
-        String req = "UPDATE `job` SET `type`=?, `metierOuproduit`=?, `description`=?, `photos`=?, `IdCategorie`=? WHERE id=?";
+        String req = "UPDATE `job` SET `type`=?, `metierOuproduit`=?, `description`=?, `photos`=?, `NomCategorie`=? WHERE id=?";
         PreparedStatement st = cnx.prepareStatement(req);
 
         st.setString(1, J.getType());
         st.setString(2, J.getMetierOuProduit());
         st.setString(3, J.getDescription());
         st.setString(4, J.getPhotos());
-        st.setInt(5, J.getIdCategorie());
+        st.setString(5, J.getNomCategorie());
         st.setInt(6, J.getId());
 
         int rowsAffected = st.executeUpdate();
@@ -115,6 +117,8 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 Job E = new Job ();
+                                E.setId(rs.getInt("Id"));
+
                 E.setType(rs.getString("Type"));
                 E.setMetierOuProduit(rs.getString("MetierOuProduit"));
                 E.setDescription(rs.getString("Description"));
@@ -122,8 +126,7 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
             
               
                 
-                E.setId(rs.getInt("Id"));
-                                E.setIdCategorie(rs.getInt("IdCategorie"));
+                                E.setNomCategorie(rs.getString("NomCategorie"));
 
                  
                 
@@ -137,6 +140,7 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
          
          return job ;
     }
+   /*
 
     public List<Job> afficherjob(){
         List<Job> job = new ArrayList<>();
@@ -157,7 +161,7 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
               
                 
                 E.setId(rs.getInt("Id"));
-                E.setIdCategorie(rs.getInt("IdCategorie"));
+                E.setNomCategorie(rs.getString("NomCategorie"));
 
                 job.add(E);
             }
@@ -169,80 +173,13 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
          
          return job ;
     }
-    /*
-    
-    public ObservableList<Category> afficherCategory2() {
-        String sql = "SELECT * FROM category";
-        List<Category> listeCatg = new ArrayList<>();
-
-        try {
-            Statement statement = cnx.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            while (result.next()) {
-                int IdCategorie = result.getInt(1);
-                String DescriptionCategorie = result.getString(2);
-                String NomCategorie=result.getString(3);
-                Category c = new Category(IdCategorie, DescriptionCategorie,NomCategorie);
-                obList.add(c);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return obList;
-    }
-*/
-    
+  
    
-   /*
-   public ObservableList<Job> afficherJob2() {
-        String sql = "SELECT * FROM job";
-        List<Job> listeJob = new ArrayList<>();
-
-        try {
-            Statement statement = cnx.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            while (result.next()) {
-                int id = result.getInt(1);
-                String type = result.getString(2);
-                String metierOuProduit = result.getString(3);
-                String description =  result.getString(4);
-                String photos = result.getString(5);
-                int IdCategorie = result.getInt(6);
-
-                Job s = new Job(id, type, metierOuProduit, description, photos, IdCategorie);
-                obList.add(s);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return obList;
-    }
-   
-   */
-   
-   public boolean getArticle(Job s) {
-        try {
-            PreparedStatement ps;
-            ps = cnx.prepareStatement("SELECT * FROM Job WHERE id = ?");
-            ps.setString(1, s.getDescription());
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                //System.out.println(rs.getString("ServLib"));
-                return true; 
-            } else {
-                return false;
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return false;
-   }
-
+  */
    //jointure
     public ObservableList<Job> getJobByCategorie() {
         String sql ="select * from job J"
-                + "JOIN Category C ON C.IdCategorie=J.IdCategorie";
+                + "JOIN Category C ON C.NomCategorie=J.NomCategorie";
         List<Job> listeJob = new ArrayList<>();
 
         try {
@@ -254,9 +191,9 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
                 String metierOuProduit = result.getString(3);
                 String description = result.getString(4);
                 String photos = result.getString(5);
-                int IdCategorie= result.getInt(6);
+                String NomCategorie= result.getString(6);
 
-                Job s = new Job(type, metierOuProduit, description, photos, id,IdCategorie);
+                Job s = new Job(id,type, metierOuProduit, description, photos,NomCategorie);
                 obListCat.add(s);
             }
         } catch (SQLException ex) {
@@ -264,8 +201,36 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
         }
         return obListCat;
     }
-}
+    
+    
+  public ObservableList<Job> afficherJobList() {
+        String sql = "SELECT * FROM article";
+        List<Job> listeJob= new ArrayList<>();
 
+        try {
+            Statement statement = cnx.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while (result.next()) {
+              int id = result.getInt(1);
+                String type = result.getString(2);
+                String metierOuProduit = result.getString(3);
+                String description = result.getString(4);
+                String photos = result.getString(5);
+                String NomCategorie= result.getString(6);
+
+
+                Job s = new Job(id,type, metierOuProduit, description, photos,NomCategorie);
+                obList.add(s);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return obList;
+    }
+
+
+  
+}
     
             
    
@@ -280,25 +245,5 @@ ObservableList<Job>obList = FXCollections.observableArrayList();
  
  
  
- 
- 
-         // public void ajouterjob (Job j){
-       
-        
-           // try {
-            //String req = "INSERT INTO `Job`( `type`,`metierOuproduit','description','photos') VALUES ('"+j.getType()+"','"+j.getMetierOuProduit()+"','"+j.getDescription()+"','"+j.getPhotos()+"')";
-              //      Statement st = cnx.createStatement();
-            
-          
-          //  st.executeUpdate(req);
-            //System.out.println("Job added successfully");
-            //}
-            //catch (SQLException ex) {
-           //System.out.println("failed!"); 
-       // }
-
-   
-        
-        
         
         

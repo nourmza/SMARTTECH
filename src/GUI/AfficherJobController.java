@@ -20,7 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,6 +35,8 @@ import javafx.stage.Stage;
  *
  * @author mznou
  */
+
+
 public class AfficherJobController implements Initializable {
 
     @FXML
@@ -43,7 +48,7 @@ public class AfficherJobController implements Initializable {
    
    
       static int id;
-      static int IdCategorie;
+      static String NomCategorie;
     static String type;
     static String metierOuProduit;
     static String description;
@@ -75,17 +80,35 @@ ListView<Job> list1= afficherjob;
     @FXML
     private void supprimer_job(ActionEvent event) {
         
-         ListView<Job> list1 = afficherjob;
-        JobService inter = new JobService();
-        int selectedIndex = list1.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            Job A = list1.getSelectionModel().getSelectedItem();
-            System.out.println(A.getId());
-            inter.supprimerJob2(A.getId());
-            list1.getItems().remove(selectedIndex);
-        } else {
-            System.out.println("Veuillez sélectionner un Job à supprimer.");
-        }
+
+ListView<Job> list1 = afficherjob;
+JobService inter = new JobService();
+int selectedIndex = list1.getSelectionModel().getSelectedIndex();
+
+if (selectedIndex >= 0) {
+    Job A = list1.getSelectionModel().getSelectedItem();
+    System.out.println(A.getId());
+
+    // Créez une boîte de dialogue de confirmation
+    Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+    confirmationAlert.setTitle("Confirmation de la suppression");
+    confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir supprimer ce Job ?");
+
+    // Ajoutez des boutons Oui et Non à la boîte de dialogue
+    confirmationAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+    // Affichez la boîte de dialogue et attendez la réponse de l'utilisateur
+    ButtonType userChoice = confirmationAlert.showAndWait().orElse(ButtonType.NO);
+
+    if (userChoice == ButtonType.YES) {
+        // Supprimez l'élément uniquement si l'utilisateur a cliqué sur Oui
+        inter.supprimerJob2(A.getId());
+        list1.getItems().remove(selectedIndex);
+    }
+} else {
+    System.out.println("Veuillez sélectionner un Job à supprimer.");
+}
+
     }
 
     @FXML
@@ -98,7 +121,7 @@ ListView<Job> list1= afficherjob;
         Job A = list.getSelectionModel().getSelectedItem();
         
           id =A.getId();
-   IdCategorie=A.getIdCategorie();
+   NomCategorie=A.getNomCategorie();
    type=A.getType();
    metierOuProduit=A.getMetierOuProduit();
    description=A.getDescription();

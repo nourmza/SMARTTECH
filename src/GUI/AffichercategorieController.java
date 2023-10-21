@@ -20,7 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -71,17 +74,34 @@ ListView<Category> list1= affichercategorie;
 
     @FXML
     private void supprimercategorie(ActionEvent event) {
-   ListView<Category> list1 = affichercategorie;
-        CategoryService inter = new CategoryService();
-        int selectedIndex = list1.getSelectionModel().getSelectedIndex();
-        if (selectedIndex >= 0) {
-            Category A = list1.getSelectionModel().getSelectedItem();
-            System.out.println(A.getIdCategorie());
-            inter.supprimer_category(A.getIdCategorie());
-            list1.getItems().remove(selectedIndex);
-        } else {
-            System.out.println("Veuillez sélectionner un categorie à supprimer.");
-        }
+ 
+ListView<Category> list1 = affichercategorie;
+CategoryService inter = new CategoryService();
+int selectedIndex = list1.getSelectionModel().getSelectedIndex();
+
+if (selectedIndex >= 0) {
+    Category A = list1.getSelectionModel().getSelectedItem();
+    System.out.println(A.getIdCategorie());
+
+    // Créez une boîte de dialogue de confirmation
+    Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+    confirmationAlert.setTitle("Confirmation de la suppression");
+    confirmationAlert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette catégorie ?");
+
+    // Ajoutez des boutons Oui et Non à la boîte de dialogue
+    confirmationAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+    // Affichez la boîte de dialogue et attendez la réponse de l'utilisateur
+    ButtonType userChoice = confirmationAlert.showAndWait().orElse(ButtonType.NO);
+
+    if (userChoice == ButtonType.YES) {
+        // Supprimez l'élément uniquement si l'utilisateur a cliqué sur Oui
+        inter.supprimer_category(A.getIdCategorie());
+        list1.getItems().remove(selectedIndex);
+    }
+} else {
+    System.out.println("Veuillez sélectionner une catégorie à supprimer.");
+}
 
     }
 

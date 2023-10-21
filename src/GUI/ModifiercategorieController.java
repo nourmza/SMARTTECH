@@ -83,7 +83,7 @@ private ListView<Category> affichercategorie;
    }else{
   
         Category A = new Category(AffichercategorieController.IdCategorie,NomCategorie,DescriptionCategorie);
-                
+
         inter.modifier(A);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
            alert .setTitle("information dialog");

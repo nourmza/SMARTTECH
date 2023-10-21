@@ -16,8 +16,11 @@ import java.util.List;
 public interface IJob {
     
     public void ajouterJob ( Job J);
-    public void modifierJob (Job J);
-    public void supprimerJob(int id);
-    public List<Job>afficherJob();
-    public Job getJob (int id) throws SQLException;
+    public void modifier (Job J);
+    public void supprimerJob(Job J);
+    public void supprimerJob2(int id);
+ 
+        public List<Job> afficherJobList();
+
+
 }

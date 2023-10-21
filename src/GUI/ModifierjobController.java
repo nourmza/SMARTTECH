@@ -36,6 +36,8 @@ import javafx.stage.Stage;
  *
  * @author mznou
  */
+
+/*
 public class ModifierjobController implements Initializable {
 
     @FXML
@@ -60,6 +62,10 @@ public class ModifierjobController implements Initializable {
     /**
      * Initializes the controller class.
      */
+
+
+
+/*
     @Override
     public void initialize(URL url, ResourceBundle rb) {
           fx_type.setText(AfficherJobController.type);
@@ -143,4 +149,4 @@ private void modifier(ActionEvent event) {
         }
     }
     
-}
+}*/

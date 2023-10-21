@@ -8,6 +8,7 @@
 
 package esprit.services;
 
+import Interface.ICategorie;
 import esprit.enities.Category;
 import esprit.tools.DataSource;
 import java.sql.Connection;
@@ -37,17 +38,14 @@ import javafx.collections.ObservableList;
  *
  * @author Lenovo
  */
-public class CategoryService {
+public class CategoryService  implements ICategorie {
     
 Connection cnx=DataSource.getInstance().getConnection();
     
     ObservableList<Category>obList = FXCollections.observableArrayList();
 
-    /**
-     *
-     * @param C
-     */
-    public void ajouterCategory (Category C){
+  
+    public String ajouterCategory (Category C){
         
         
             try {
@@ -59,7 +57,7 @@ Connection cnx=DataSource.getInstance().getConnection();
             catch (SQLException ex) {
            System.out.println("failed!"); 
         }
-
+return C.getNomCategorie();
            }
     
     
@@ -67,11 +65,11 @@ Connection cnx=DataSource.getInstance().getConnection();
     public void modifier(Category C) {
 
         try {
-            String req = "UPDATE `Category` SET `DescriptionCategorie`=?,`NomCategorie`=? WHERE IdCategorie=?";
+            String req = "UPDATE `Category` SET `NomCategorie`=? ,`DescriptionCategorie`=? WHERE IdCategorie=?";
             PreparedStatement st = cnx.prepareStatement(req);
 
-            st.setString(1, C.getDescriptionCategorie());
-            st.setString(2, C.getNomCategorie());
+            st.setString(2, C.getDescriptionCategorie());
+            st.setString(1, C.getNomCategorie());
         
             st.setInt(3, C.getIdCategorie());
             st.executeUpdate();
@@ -102,12 +100,14 @@ Connection cnx=DataSource.getInstance().getConnection();
             ResultSet rs = st.executeQuery(req);
             while (rs.next()) {
                 Category E = new Category ();
+                                E.setIdCategorie(rs.getInt("IdCategorie"));
+
+                                 E.setNomCategorie(rs.getString("NomCategorie"));
+
                 E.setDescriptionCategorie(rs.getString("DescriptionCategorie"));
-                 E.setNomCategorie(rs.getString("NomCategorie"));
             
               
                 
-                E.setIdCategorie(rs.getInt("IdCategorie"));
                 
                  
                 
@@ -132,9 +132,9 @@ Connection cnx=DataSource.getInstance().getConnection();
             ResultSet result = statement.executeQuery(sql);
             while (result.next()) {
                 int IdCategorie = result.getInt(1);
-                String DescriptionCategorie = result.getString(2);
-                String NomCategorie=result.getString(3);
-                Category c = new Category(IdCategorie, DescriptionCategorie,NomCategorie);
+                String DescriptionCategorie = result.getString(3);
+                String NomCategorie=result.getString(2);
+                Category c = new Category(IdCategorie,NomCategorie,DescriptionCategorie);
                 obList.add(c);
             }
         } catch (SQLException ex) {
@@ -142,17 +142,32 @@ Connection cnx=DataSource.getInstance().getConnection();
         }
         return obList;
     }
+public ObservableList<String> fetchAllCategoryNames() {
+    ObservableList<String> categoryNames = FXCollections.observableArrayList();
+    String query = "SELECT DISTINCT NomCategorie FROM category";
+    try {
+        Statement st = cnx.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        while (rs.next()) {
+            categoryNames.add(rs.getString("NomCategorie"));
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return categoryNames;
+}
 
     
     public boolean getCategorie(Category c) {
         try {
             PreparedStatement ps;
-            ps = cnx.prepareStatement("SELECT * FROM category WHERE IdCategorie = ?");
+            ps = cnx.prepareStatement("SELECT * FROM category WHERE NomCategorie = ?");
             ps.setString(1, c.getNomCategorie());
+            ps.setString(2,c.getDescriptionCategorie());
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                System.out.println(rs.getString("CatLib"));
+                System.out.println(rs.getString("NomCategorie"));
                 return true;
             } else {
                 return false;
@@ -162,6 +177,10 @@ Connection cnx=DataSource.getInstance().getConnection();
         }
         return false;
     }
+
+   
+
+
 }
 
 

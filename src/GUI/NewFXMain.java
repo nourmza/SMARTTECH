@@ -28,8 +28,31 @@ public class NewFXMain extends Application {
         Parent root;
         try {
             root=FXMLLoader.load(getClass().getResource("location_category.fxml"));
-             Scene scene = new Scene(root);
+          //   Scene scene = new Scene(root);
         
+             
+
+             
+                    Scene scene = new Scene(root, 968, 600);
+
+        primaryStage.setTitle("SMART TECH");
+        primaryStage.setScene(scene);
+        
+        // Set window width and height
+       // primaryStage.setWidth(1000);
+      //  primaryStage.setHeight(800);
+        
+        // Make window non-resizable
+        primaryStage.setResizable(false);
+        
+        primaryStage.show();
+             
+             
+             
+             
+             
+             
+             
         primaryStage.setTitle("SMARTTECH");
         primaryStage.setScene(scene);
         primaryStage.show();
