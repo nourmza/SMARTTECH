@@ -229,12 +229,36 @@ ObservableList<Job>obListCat = FXCollections.observableArrayList();
     }
 
 
+
   
-}
-    
-            
-   
-            
+  public ArrayList<Job> afficherJobArrayList() {
+        ArrayList<Job> ls = new ArrayList();
+        
+        try{
+            Statement stmt = cnx.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from job");
+            while(rs.next()){
+                ls.add(
+                        
+                        
+                        new Job(
+                                rs.getInt("id"),
+                                rs.getString("type"),
+                                rs.getString("metierOuProduit"), 
+                                rs.getString("description"),
+                                rs.getString("photos"),
+                                rs.getString("NomCategorie")
+                        )
+                );
+            }
+        }catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return ls;
+    }
+  
+}   
 
  
  

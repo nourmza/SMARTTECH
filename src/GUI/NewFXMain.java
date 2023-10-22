@@ -33,7 +33,7 @@ public class NewFXMain extends Application {
              
 
              
-                    Scene scene = new Scene(root, 968, 600);
+                    Scene scene = new Scene(root, 1000, 600);
 
         primaryStage.setTitle("SMART TECH");
         primaryStage.setScene(scene);

@@ -26,5 +26,6 @@
             <Image url="@../resources/resources/trash.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnstat" layoutX="429.0" layoutY="524.0" mnemonicParsing="false" onAction="#gotostat" prefHeight="31.0" prefWidth="136.0" style="-fx-background-radius: 10; -fx-background-color: #c1b263;" text="Stat" />
    </children>
 </AnchorPane>

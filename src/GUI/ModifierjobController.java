@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +39,7 @@ import javafx.stage.Stage;
  * @author mznou
  */
 
-/*
+
 public class ModifierjobController implements Initializable {
 
     @FXML
@@ -54,10 +56,11 @@ public class ModifierjobController implements Initializable {
     private Label file_path;
     @FXML
     private Button modifier_job;
-    @FXML
     private TextField catid;
     @FXML
     private ImageView btnReturn;
+    @FXML
+    private ComboBox<String> cat_cb;
 
     /**
      * Initializes the controller class.
@@ -65,13 +68,35 @@ public class ModifierjobController implements Initializable {
 
 
 
-/*
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
           fx_type.setText(AfficherJobController.type);
          fx_metier.setText(AfficherJobController.metierOuProduit);
          fx_desc.setText(AfficherJobController.description);
-         catid.setText(Integer.toString(AfficherJobController.IdCategorie));
+         //cat_cb.setText(AfficherJobController.NomCategorie);
+         
+         
+          //GET CATREGORIES LISTE DEROULANTE FOR JOIN !
+                        ObservableList<String>list = FXCollections.observableArrayList();
+                        CategoryService sc = new CategoryService();
+                        
+                        
+                      
+                        ObservableList<Category>obList = FXCollections.observableArrayList();
+                        obList =sc.afficherCategory2();
+
+        cat_cb.getItems().clear();
+        
+        for(Category nameCat : obList) {
+            System.out.println("hii");
+            list.add(nameCat.getNomCategorie());
+                        System.out.println("hii"+list);
+
+                    cat_cb.setItems(list);
+
+        }
+
 
 
     }    
@@ -103,16 +128,10 @@ private void modifier(ActionEvent event) {
     String metierOuProduit = fx_metier.getText();
     String description = fx_desc.getText();
 
-    // Assurez-vous que le champ IdCategorie est un nombre valide
-    int IdCategorie;
-    try {
-        IdCategorie = Integer.parseInt(catid.getText());
-    } catch (NumberFormatException e) {
-        IdCategorie = -1; // Valeur par défaut en cas d'erreur
-    }
+ 
 
     // Validez les champs avant de procéder à la modification
-    if (type.isEmpty() || metierOuProduit.isEmpty() || description.isEmpty() || IdCategorie < 1) {
+    if (type.isEmpty() || metierOuProduit.isEmpty() || description.isEmpty()) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
@@ -120,7 +139,7 @@ private void modifier(ActionEvent event) {
         alert.show();
     } else {
         // Créez un nouvel objet Job
-        Job modifiedJob = new Job(AfficherJobController.id, type, metierOuProduit, description, file_path.getText(), IdCategorie);
+        Job modifiedJob = new Job(AfficherJobController.id, type, metierOuProduit, description, file_path.getText(),cat_cb.getValue());
         
         // Appelez la méthode de service pour effectuer la modification
         jobService.modifier(modifiedJob);
@@ -149,4 +168,4 @@ private void modifier(ActionEvent event) {
         }
     }
     
-}*/
+}

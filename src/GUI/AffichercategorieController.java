@@ -100,7 +100,18 @@ if (selectedIndex >= 0) {
         list1.getItems().remove(selectedIndex);
     }
 } else {
-    System.out.println("Veuillez sélectionner une catégorie à supprimer.");
+    
+      Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+
+  //  System.out.println("Veuillez sélectionner une catégorie à supprimer.");
+      confirmationAlert.setHeaderText("Veuillez sélectionner une categorie à supprimer.?");
+
+    // Ajoutez des boutons Oui et Non à la boîte de dialogue
+    confirmationAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+    // Affichez la boîte de dialogue et attendez la réponse de l'utilisateur
+    ButtonType userChoice = confirmationAlert.showAndWait().orElse(ButtonType.NO);
+
 }
 
     }

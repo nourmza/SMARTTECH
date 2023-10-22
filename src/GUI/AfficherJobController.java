@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,11 +26,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -59,11 +63,16 @@ public class AfficherJobController implements Initializable {
     private ImageView btnReturn;
     @FXML
     private AnchorPane nh;
+    private ComboBox<String> StatV;
+    @FXML
+    private Button btnstat;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+            
 ListView<Job> list1= afficherjob;
         JobService inter = new JobService();
         List<Job> list2 = inter.afficher();
@@ -72,6 +81,7 @@ ListView<Job> list1= afficherjob;
             list1.getItems().add(C);
 
         }  
+       
     }    
    
 
@@ -106,7 +116,16 @@ if (selectedIndex >= 0) {
         list1.getItems().remove(selectedIndex);
     }
 } else {
-    System.out.println("Veuillez sélectionner un Job à supprimer.");
+        Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+
+   // confirmationAlert.setTitle("Veuillez sélectionner un Job à supprimer.");
+       confirmationAlert.setHeaderText("Veuillez sélectionner un Job à supprimer.?");
+    // Ajoutez des boutons Oui et Non à la boîte de dialogue
+    confirmationAlert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+    // Affichez la boîte de dialogue et attendez la réponse de l'utilisateur
+    ButtonType userChoice = confirmationAlert.showAndWait().orElse(ButtonType.NO);
+
 }
 
     }
@@ -157,5 +176,34 @@ if (selectedIndex >= 0) {
             System.out.println(ex);
         }
     }
+/*
+    @FXML
+        
+         private void Statistique(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Statistique.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                StatistiqueController c = loader.getController();
+                c.start();
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
+
+    }*/
+
+    @FXML
+    private void gotostat(ActionEvent event) {
+        try {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Stat.fxml"));
+    Parent root = loader.load();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
+} catch (IOException ex) {
+    Logger.getLogger(AfficherJobController.class.getName()).log(Level.SEVERE, null, ex);
+
     }
     
+    }
+
+}

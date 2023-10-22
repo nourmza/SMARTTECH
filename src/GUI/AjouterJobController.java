@@ -93,7 +93,7 @@ public class AjouterJobController implements Initializable {
     @FXML
     private ComboBox<String> cat_cb;
 
- Job article = new Job();
+ //Job article = new Job();
     JobService ss = new JobService();
    
     /**

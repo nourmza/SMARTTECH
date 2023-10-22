@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/tools/DataSource.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/ModifiercategorieController.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AjoutercategorieController.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AfficherJobController.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/NewFXMain.java</file>
-            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/AjouterJobController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/Interface/ICategorie.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/esprit/enities/Job.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/Interface/IJob.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/StatistiqueJobController.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/categoryapplication/CategoryMain.java</file>
+            <file>file:/C:/Users/mznou/Desktop/smartech/smartech/src/GUI/StatController.java</file>
         </group>
     </open-files>
 </project-private>
