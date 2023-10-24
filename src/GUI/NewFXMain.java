@@ -27,9 +27,10 @@ public class NewFXMain extends Application {
        
         Parent root;
         try {
-            root=FXMLLoader.load(getClass().getResource("location_category.fxml"));
+//            root=FXMLLoader.load(getClass().getResource("location_category.fxml"));
           //   Scene scene = new Scene(root);
-        
+                    root=FXMLLoader.load(getClass().getResource("location_category.fxml"));
+
              
 
              
@@ -59,7 +60,7 @@ public class NewFXMain extends Application {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }}
- 
+  
     
     /**
      * @param args the command line arguments

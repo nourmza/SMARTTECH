@@ -178,12 +178,57 @@ public ObservableList<String> fetchAllCategoryNames() {
         return false;
     }
 
+    
+       public int nbvente(Category p){
+          int id=p.getIdCategorie();
+     int x = 0;
+     int  v= 0;
+     
+           try{
+               
+             String req = "SELECT COUNT(*) as nbr FROM `category` where IdCategorie ='" + id + "'";
+     
+               Statement ste = cnx.createStatement();
+              ResultSet rs=ste.executeQuery(req);
+              while (rs.next())
+              {v=rs.getInt("nbr");
+ }
+                       
+     }catch(SQLException ex) {
+            System.out.println("erreur");
+                    }
+
+   return v;
    
 
 
 }
+            public ObservableList<Category> likeByCategory(String a) {
+     
+        ObservableList<Category> listData = FXCollections.observableArrayList();
+        try {
+            String sql = "select * from category where idCategorie like '%"+a+"%' or NomCategorie like '%"+a+"%'   ";
+            ResultSet rs = cnx.createStatement().executeQuery(sql);
+            while (rs.next()) {  
+                Category u = new Category();
+                
+               u.setIdCategorie(rs.getInt("idCategorie"));  
+      u.setNomCategorie(rs.getString("NomCategorie"));
+   
+      
+       
+        
+                listData.add(u);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Category.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listData;
+    }
+     
 
 
+}
 
 
        

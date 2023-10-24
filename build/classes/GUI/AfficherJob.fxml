@@ -2,11 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="581.0" prefWidth="846.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherJobController">
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="581.0" prefWidth="951.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AfficherJobController">
    <children>
       <ListView fx:id="afficherjob" layoutX="24.0" layoutY="63.0" prefHeight="429.0" prefWidth="760.0" />
       <ImageView fx:id="btnReturn" fitHeight="67.0" fitWidth="66.0" layoutX="14.0" layoutY="7.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
@@ -16,7 +18,7 @@
       </ImageView>
       <Button fx:id="supprimer" layoutX="64.0" layoutY="524.0" mnemonicParsing="false" onAction="#supprimer_job" prefHeight="31.0" prefWidth="136.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="supprimer" />
       <Button fx:id="mod" layoutX="218.0" layoutY="525.0" mnemonicParsing="false" onAction="#mod" prefHeight="31.0" prefWidth="136.0" style="-fx-background-radius: 10; -fx-background-color: #c1b263;" text="modifier" />
-      <ImageView fitHeight="31.0" fitWidth="29.0" layoutX="232.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="39.0" layoutX="222.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resources/resources/edit.png" />
          </image>
@@ -26,6 +28,41 @@
             <Image url="@../resources/resources/trash.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnstat" layoutX="429.0" layoutY="524.0" mnemonicParsing="false" onAction="#gotostat" prefHeight="31.0" prefWidth="136.0" style="-fx-background-radius: 10; -fx-background-color: #c1b263;" text="Stat" />
+      <Button fx:id="stat" layoutX="365.0" layoutY="523.0" mnemonicParsing="false" onAction="#gotostat" prefHeight="31.0" prefWidth="136.0" style="-fx-background-radius: 10; -fx-background-color: #c1b263;" text="   Statistique" />
+      <ImageView fitHeight="31.0" fitWidth="44.0" layoutX="367.0" layoutY="522.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/stats.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Search" layoutX="476.0" layoutY="14.0" mnemonicParsing="false" onAction="#Search" prefHeight="24.0" prefWidth="125.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="Search" textFill="#fcf9f9">
+         <font>
+            <Font name="Noto Serif" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtsearch" layoutX="176.0" layoutY="20.0" prefHeight="35.0" prefWidth="279.0" style="-fx-background-radius: 25;" />
+      <Button fx:id="triDSC" layoutX="509.0" layoutY="523.0" mnemonicParsing="false" onAction="#triDSC" prefHeight="31.0" prefWidth="136.0" style="-fx-background-radius: 10; -fx-background-color: #c1b263;" text="Tri" />
+      <Button fx:id="excel" layoutX="608.0" layoutY="17.0" mnemonicParsing="false" onAction="#excelmth" prefHeight="37.0" prefWidth="118.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="Excel" textFill="#f7f5f5" />
+      <ImageView fitHeight="24.0" fitWidth="29.0" layoutX="615.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/excel.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="480.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/icons8_Search_52px.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="652.0" layoutY="522.0" mnemonicParsing="false" onAction="#QR" prefHeight="31.0" prefWidth="158.0" style="-fx-background-color: #c1b263; -fx-background-radius: 10;" text="Qr Code" textFill="#f7f5f5" />
+      <ImageView fx:id="qrcode" fitHeight="132.0" fitWidth="130.0" layoutX="807.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="31.0" fitWidth="50.0" layoutX="512.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/trier-par-ordre-decroissant.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="31.0" fitWidth="37.0" layoutX="659.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/PIDEV-3A-JavaFX-master/PIDEV-3A-JavaFX-master/src/Image/258823762_490219592198902_4693257684852131515_n.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

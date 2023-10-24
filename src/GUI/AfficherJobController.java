@@ -4,12 +4,42 @@
  * and open the template in the editor.
  */
 package GUI;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.stage.Window;
 
 import esprit.enities.Job;
+import esprit.services.CategoryService;
 import esprit.services.JobService;
+import esprit.tools.DataSource;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.lang.ProcessBuilder.Redirect.Type;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,11 +58,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
+
+
 
 /**
  * FXML Controller class
@@ -65,7 +106,17 @@ public class AfficherJobController implements Initializable {
     private AnchorPane nh;
     private ComboBox<String> StatV;
     @FXML
-    private Button btnstat;
+    private Button stat;
+    @FXML
+    private Button Search;
+    @FXML
+    private TextField txtsearch;
+    @FXML
+    private Button triDSC;
+    @FXML
+    private Button excel;
+    @FXML
+    private ImageView qrcode;
     /**
      * Initializes the controller class.
      */
@@ -194,16 +245,137 @@ if (selectedIndex >= 0) {
     @FXML
     private void gotostat(ActionEvent event) {
         try {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Stat.fxml"));
-    Parent root = loader.load();
-    Stage stage = new Stage();
-    stage.setScene(new Scene(root));
-    stage.show();
-} catch (IOException ex) {
-    Logger.getLogger(AfficherJobController.class.getName()).log(Level.SEVERE, null, ex);
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("statistique.fxml"));
+            Parent root = loader.load();
+            
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+            // Si vous souhaitez fermer la fenêtre actuelle après avoir ouvert la nouvelle fenêtre
+            Node source = (Node) event.getSource();
+            Window theStage = source.getScene().getWindow();
+            theStage.hide();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(AfficherJobController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+
+
+            ObservableList<Job> ProduitListSearch;
+
+    @FXML
+    private void Search(ActionEvent event) {
+        
+                 JobService st= new  JobService();
+        ProduitListSearch = st.likeByJob(txtsearch.getText());
+        afficherjob.setItems(ProduitListSearch);
+    }
+        private ListView<Job> listViewCurrentStore; // Notez le changement de TableView à ListView
+
+
+    @FXML
+ private void triDSC(ActionEvent event) throws WriterException, FileNotFoundException {
+    JobService jobService = new JobService();
+
+    // Récupération de la liste triée
+    ObservableList<Job> sortedJobs = jobService.TriTypeAs();
+
+    // Mise à jour des éléments affichés dans le ListView
+    afficherjob.setItems(sortedJobs);
     }
 
+
+    @FXML
+    private void excelmth(ActionEvent event) {
+        
+ Connection cnx=DataSource.getInstance().getConnection();
+
+        try {
+
+            String filename = "C:\\Users\\mznou\\Desktop\\smartech\\smartech\\data.xls";
+            HSSFWorkbook hwb = new HSSFWorkbook();
+            HSSFSheet sheet = hwb.createSheet("new sheet");
+
+            HSSFRow rowhead = sheet.createRow((short) 0);
+            rowhead.createCell((short) 0).setCellValue("type");
+            rowhead.createCell((short) 1).setCellValue("metierOuProduit");
+            rowhead.createCell((short) 2).setCellValue("description");
+            rowhead.createCell((short) 3).setCellValue("photos");
+            rowhead.createCell((short) 4).setCellValue("NomCategorie");
+
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery("select * from job");
+            int i = 1;
+            while (rs.next()) {
+                HSSFRow row = sheet.createRow((short) i);   
+
+                row.createCell((short) 0).setCellValue(rs.getString("type"));
+                row.createCell((short) 1).setCellValue(rs.getString("metierOuProduit"));
+                row.createCell((short) 2).setCellValue(rs.getString("description"));
+                row.createCell((short) 3).setCellValue(rs.getString("photos"));
+                row.createCell((short) 4).setCellValue(rs.getString("NomCategorie"));
+                i++;
+            }
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            hwb.write(fileOut);
+            fileOut.close();
+            System.out.println("Your excel file has been generated!");
+            File file = new File(filename);
+            if (file.exists()) {
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(file);
+                }
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+
+        }
+    }
+          //  public ListView<Job> tblViewCurrentStore;
+
+ @FXML
+private void QR(ActionEvent event) throws WriterException {
+    Job pt = afficherjob.getSelectionModel().getSelectedItem();
+    System.out.println(pt.getNomCategorie());
+
+    String value = pt.getNomCategorie();
+    String path = "C:\\Users\\mznou\\Desktop\\smartech\\smartech\\QRCODE\\" + value + ".png";
+    String charset = "UTF-8";
+
+    Map<EncodeHintType, Object> hintMap = new HashMap<>();
+    hintMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+    try {
+        createQR(value, path, charset, hintMap, 200, 200);
+        System.out.println("QR Code Generated!!! ");
+
+        InputStream stream = new FileInputStream(path);
+        Image image = new Image(stream);
+        qrcode.setImage(image);
+    } catch (IOException ex) {
+        Logger.getLogger(AfficherJobController.class.getName()).log(Level.SEVERE, null, ex);
+    }
 }
+ //methode de qrcode
+     public static void createQR(String data, String path,
+                                String charset, Map hashMap,
+                                int height, int width)
+        throws WriterException, IOException
+    {
+ 
+        BitMatrix matrix = new MultiFormatWriter().encode(
+            new String(data.getBytes(charset), charset),
+            BarcodeFormat.QR_CODE, width, height);
+ 
+        MatrixToImageWriter.writeToFile(
+            matrix,
+            path.substring(path.lastIndexOf('.') + 1),
+            new File(path));
+    }
+
+
+
+    }
+

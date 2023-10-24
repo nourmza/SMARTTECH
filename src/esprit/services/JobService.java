@@ -81,6 +81,25 @@ ObservableList<Job>obListCat = FXCollections.observableArrayList();
             System.out.println(ex);
         }
      }
+     
+        public List<String> afficher_S() {
+         List<String> le =new ArrayList<>();
+        try {
+            Statement st;
+            st=cnx.createStatement();
+            
+            String query="SELECT * FROM `job`";
+            ResultSet rs=st.executeQuery(query);
+            while(rs.next()){
+
+                le.add(rs.getString("NomCategorie"));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JobService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return le; 
+    }
    public void modifier(Job J) {
     try {
         String req = "UPDATE `job` SET `type`=?, `metierOuproduit`=?, `description`=?, `photos`=?, `NomCategorie`=? WHERE id=?";
@@ -258,6 +277,67 @@ ObservableList<Job>obListCat = FXCollections.observableArrayList();
         return ls;
     }
   
+  
+   
+     public ObservableList<Job> likeByJob(String a) {
+     
+        ObservableList<Job> listData = FXCollections.observableArrayList();
+        try {
+            String sql = "select * from job where id like '%"+a+"%' or NomCategorie like '%"+a+"%'   ";
+            ResultSet rs = cnx.createStatement().executeQuery(sql);
+            while (rs.next()) {  
+                Job u = new Job();
+                
+               u.setId(rs.getInt("id"));  
+      u.setType(rs.getString("type"));
+      u.setMetierOuProduit(rs.getString("metierOuProduit"));      
+        u.setDescription(rs.getString("description"));
+         u.setPhotos(rs.getString("photos")); 
+      u.setNomCategorie(rs.getString("NomCategorie"));
+      
+      
+       
+        
+                listData.add(u);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Job.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listData;
+    }
+     
+     
+     
+     public ObservableList<Job> TriTypeAs() {
+     
+  
+         ObservableList<Job> cat = FXCollections.observableArrayList();
+        String req = "SELECT * FROM job ORDER BY NomCategorie ASC";
+        try {
+            Statement st = cnx.createStatement();
+            ResultSet resultat = st.executeQuery(req);
+            
+            while (resultat.next()){
+                Job f= new Job();
+                
+                
+              
+                f.setId(resultat.getInt("id"));
+               f.setType(resultat.getString("type"));
+              f.setMetierOuProduit(resultat.getString("metierOuProduit"));
+
+                            f.setDescription(resultat.getString("description"));
+              f.setPhotos(resultat.getString("photos"));
+              f.setNomCategorie(resultat.getString("NomCategorie"));
+
+                cat.add(f);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(JobService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (cat);
+     }
 }   
 
  

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="nh" prefHeight="614.0" prefWidth="701.0" style="-fx-background-color: #fff3e0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StatistiqueController">
+   <children>
+      <PieChart fx:id="pieChart" layoutX="166.0" layoutY="75.0" prefHeight="452.0" prefWidth="486.0" />
+      <ImageView fx:id="btnReturn" fitHeight="67.0" fitWidth="66.0" layoutX="14.0" layoutY="14.0" onDragDetected="#returnTo" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/resources/return.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
